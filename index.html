@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --frame-size: 400px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -81,8 +85,8 @@
 
         .flower-frame {
             position: relative;
-            width: 400px;
-            height: 400px;
+            width: var(--frame-size);
+            height: var(--frame-size);
             margin: 0 auto 30px;
             display: flex;
             align-items: center;
@@ -282,6 +286,10 @@
 
         /* Responsive design */
         @media (max-width: 768px) {
+            :root {
+                --frame-size: 300px;
+            }
+
             h1 {
                 font-size: 2.5rem;
             }
@@ -289,11 +297,6 @@
             .flower-card {
                 padding: 40px 20px;
                 border-radius: 20px;
-            }
-
-            .flower-frame {
-                width: 300px;
-                height: 300px;
             }
 
             .pink-rose {
@@ -321,14 +324,13 @@
         }
 
         @media (max-width: 480px) {
+            :root {
+                --frame-size: 250px;
+            }
+
             h1 {
                 font-size: 2rem;
                 margin-bottom: 20px;
-            }
-
-            .flower-frame {
-                width: 250px;
-                height: 250px;
             }
 
             .pink-rose {
