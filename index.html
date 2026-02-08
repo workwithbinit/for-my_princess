@@ -221,9 +221,9 @@
 </head>
 <body>
 
-    <!-- 🎵 BACKGROUND MUSIC -->
+    <!-- 🎵 BACKGROUND MUSIC (your GitHub .webm file) -->
     <audio id="bg-music" loop preload="auto">
-        <source src="https://files.catbox.moe/kix2v6.mp3" type="audio/mpeg">
+        <source src="https://github.com/workwithbinit/for-my_princess/raw/refs/heads/main/Aandhii_-_K_Hunthyo_Hola_Hami_Sangai_Bhayeko_Bhaye_Official_Lyric_Video_256KBPS.webm" type="audio/webm">
     </audio>
 
     <div id="audio-control" onclick="toggleMusic()">
@@ -370,7 +370,7 @@
                     musicBtn.style.display = 'flex';
                     musicIcon.innerText = '🔊';
                 }).catch(e => {
-                    console.log("Playback delayed", e);
+                    console.log("Playback blocked, waiting for manual tap", e);
                     musicBtn.style.display = 'flex';
                     musicIcon.innerText = '🔇';
                 });
@@ -427,3 +427,4 @@
     </script>
 </body>
 </html>
+
