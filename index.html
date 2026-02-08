@@ -59,121 +59,6 @@
             }
         }
 
-        /* Hero section with flowers */
-        .hero {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 30px;
-            min-height: 300px;
-            padding: 40px 20px;
-        }
-
-        .hero-calligraphy {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            color: #d1477a;
-            text-shadow: 3px 3px 6px rgba(209, 71, 122, 0.3),
-                         0 0 20px rgba(255, 105, 180, 0.5);
-            animation: pulse-glow 2s ease-in-out infinite;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Hero flowers */
-        .hero-flower {
-            position: absolute;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
-            pointer-events: none;
-        }
-
-        .hero-rose-left {
-            left: 5%;
-            top: 50%;
-            transform: translateY(-50%) rotate(-15deg);
-            width: 140px;
-            height: auto;
-            animation: sway-left 4s ease-in-out infinite;
-        }
-
-        .hero-rose-right {
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%) rotate(15deg);
-            width: 140px;
-            height: auto;
-            animation: sway-right 4.2s ease-in-out infinite 0.5s;
-        }
-
-        .hero-breath-top-left {
-            left: 15%;
-            top: 10%;
-            width: 100px;
-            height: auto;
-            animation: float-gentle 3.5s ease-in-out infinite;
-        }
-
-        .hero-breath-top-right {
-            right: 15%;
-            top: 10%;
-            width: 100px;
-            height: auto;
-            animation: float-gentle 3.8s ease-in-out infinite 0.8s;
-        }
-
-        .hero-breath-bottom-left {
-            left: 20%;
-            bottom: 5%;
-            width: 90px;
-            height: auto;
-            animation: float-gentle 3.2s ease-in-out infinite 0.4s;
-        }
-
-        .hero-breath-bottom-right {
-            right: 20%;
-            bottom: 5%;
-            width: 90px;
-            height: auto;
-            animation: float-gentle 3.6s ease-in-out infinite 1s;
-        }
-
-        .hero-rose-watercolor {
-            left: 50%;
-            top: -5%;
-            transform: translateX(-50%) rotate(5deg);
-            width: 120px;
-            height: auto;
-            animation: float-gentle 4.5s ease-in-out infinite 0.3s;
-        }
-
-        @keyframes sway-left {
-            0%, 100% {
-                transform: translateY(-50%) rotate(-15deg);
-            }
-            50% {
-                transform: translateY(-55%) rotate(-18deg);
-            }
-        }
-
-        @keyframes sway-right {
-            0%, 100% {
-                transform: translateY(-50%) rotate(15deg);
-            }
-            50% {
-                transform: translateY(-55%) rotate(18deg);
-            }
-        }
-
-        @keyframes float-gentle {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-10px) rotate(3deg);
-            }
-        }
-
         .flower-card {
             background: rgba(255, 255, 255, 0.9);
             border-radius: 30px;
@@ -405,29 +290,8 @@
                 --frame-size: 300px;
             }
 
-            .hero {
-                min-height: 220px;
-                padding: 30px 10px;
-            }
-
-            .hero-calligraphy {
+            h1 {
                 font-size: 2.5rem;
-            }
-
-            .hero-rose-left, .hero-rose-right {
-                width: 100px;
-            }
-
-            .hero-breath-top-left, .hero-breath-top-right {
-                width: 70px;
-            }
-
-            .hero-breath-bottom-left, .hero-breath-bottom-right {
-                width: 65px;
-            }
-
-            .hero-rose-watercolor {
-                width: 85px;
             }
 
             .flower-card {
@@ -464,29 +328,9 @@
                 --frame-size: 250px;
             }
 
-            .hero {
-                min-height: 180px;
-                padding: 20px 5px;
-            }
-
-            .hero-calligraphy {
+            h1 {
                 font-size: 2rem;
-            }
-
-            .hero-rose-left, .hero-rose-right {
-                width: 70px;
-            }
-
-            .hero-breath-top-left, .hero-breath-top-right {
-                width: 50px;
-            }
-
-            .hero-breath-bottom-left, .hero-breath-bottom-right {
-                width: 45px;
-            }
-
-            .hero-rose-watercolor {
-                width: 60px;
+                margin-bottom: 20px;
             }
 
             .pink-rose {
@@ -532,19 +376,7 @@
     <div class="sparkle"></div>
 
     <div class="container">
-        <div class="hero">
-            <div class="hero-calligraphy">
-                Happy Valentine's Day Athuuu ❤️
-            </div>
-            <!-- Flowers around hero text -->
-            <img src="https://img.freepik.com/free-psd/red-rose-flower-isolated-transparent-background_191095-15637.png" class="hero-flower hero-rose-left" alt="">
-            <img src="https://img.freepik.com/free-psd/red-rose-flower-isolated-transparent-background_191095-15637.png" class="hero-flower hero-rose-right" alt="">
-            <img src="https://png.pngtree.com/png-clipart/20230508/original/pngtree-white-baby-breath-flowers-realistic-bouquet-png-image_9151512.png" class="hero-flower hero-breath-top-left" alt="">
-            <img src="https://png.pngtree.com/png-clipart/20230508/original/pngtree-white-baby-breath-flowers-realistic-bouquet-png-image_9151512.png" class="hero-flower hero-breath-top-right" alt="">
-            <img src="https://png.pngtree.com/png-clipart/20230508/original/pngtree-white-baby-breath-flowers-realistic-bouquet-png-image_9151512.png" class="hero-flower hero-breath-bottom-left" alt="">
-            <img src="https://png.pngtree.com/png-clipart/20230508/original/pngtree-white-baby-breath-flowers-realistic-bouquet-png-image_9151512.png" class="hero-flower hero-breath-bottom-right" alt="">
-            <img src="https://png.pngtree.com/png-clipart/20230113/original/pngtree-watercolor-red-rose-flower-isolated-png-image_8907865.png" class="hero-flower hero-rose-watercolor" alt="">
-        </div>
+        <h1>Happy Valentine's Day Athuuu ❤️</h1>
         
         <div class="flower-card">
             <div class="flower-frame">
