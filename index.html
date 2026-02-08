@@ -221,9 +221,9 @@
 </head>
 <body>
 
-    <!-- 🎵 BACKGROUND MUSIC (your GitHub .webm file) -->
+    <!-- 🎵 BACKGROUND MUSIC (MP3) -->
     <audio id="bg-music" loop preload="auto">
-        <source src="https://github.com/workwithbinit/for-my_princess/raw/refs/heads/main/Aandhii_-_K_Hunthyo_Hola_Hami_Sangai_Bhayeko_Bhaye_Official_Lyric_Video_256KBPS.webm" type="audio/webm">
+        <source src="https://github.com/workwithbinit/for-my_princess/raw/refs/heads/main/Aandhii_-_K_Hunthyo_Hola_Hami_Sangai_Bhayeko_Bhaye_Official_Lyric_Video_256KBPS.mp3" type="audio/mpeg">
     </audio>
 
     <div id="audio-control" onclick="toggleMusic()">
@@ -364,16 +364,24 @@
                 promptText.innerHTML = "ofc you do hehe 😁❤️";
                 promptText.style.color = "var(--valentines-red)";
                 
+                // Show music control immediately
+                musicBtn.style.display = 'flex';
+                
+                // Set start time and try to play (user interaction happened via button click)
                 music.currentTime = 25;
-                music.play().then(() => {
-                    musicPlaying = true;
-                    musicBtn.style.display = 'flex';
-                    musicIcon.innerText = '🔊';
-                }).catch(e => {
-                    console.log("Playback blocked, waiting for manual tap", e);
-                    musicBtn.style.display = 'flex';
-                    musicIcon.innerText = '🔇';
-                });
+                const playPromise = music.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        musicPlaying = true;
+                        musicIcon.innerText = '🔊';
+                    }).catch(e => {
+                        console.log("Autoplay prevented. User needs to click music button.", e);
+                        musicIcon.innerText = '🔇';
+                        // Pulse animation to draw attention to music button
+                        musicBtn.style.animation = 'heartbeat 1s infinite';
+                    });
+                }
 
                 setTimeout(() => {
                     createBloomingFlowers();
@@ -427,4 +435,3 @@
     </script>
 </body>
 </html>
-
