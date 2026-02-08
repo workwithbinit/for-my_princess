@@ -4,37 +4,396 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Princess</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 25%, #ffd4e8 50%, #ffb3d9 75%, #ff99cc 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">❤️</text></svg>'), auto;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 90%;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #d1477a;
+            text-shadow: 3px 3px 6px rgba(209, 71, 122, 0.3),
+                         0 0 20px rgba(255, 105, 180, 0.5);
+            margin-bottom: 30px;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 3px 3px 6px rgba(209, 71, 122, 0.3),
+                             0 0 20px rgba(255, 105, 180, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 3px 3px 10px rgba(209, 71, 122, 0.5),
+                             0 0 30px rgba(255, 105, 180, 0.8);
+            }
+        }
+
+        .flower-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(209, 71, 122, 0.3);
+            position: relative;
+            animation: card-in 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes card-in {
+            from { 
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            to { 
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
         .flower-frame {
             position: relative;
-            display: inline-block;
-            animation: frame-in 1s ease-in-out;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        @keyframes frame-in {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
-        }
+
         .flower {
             position: absolute;
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            transition: transform 0.3s ease;
         }
+
+        .flower:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
         .pink-rose {
-            /* Add specific styles for pink rose */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            z-index: 3;
+            animation: float-center 4s ease-in-out infinite;
         }
+
+        @keyframes float-center {
+            0%, 100% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            50% {
+                transform: translate(-50%, -55%) rotate(-3deg);
+            }
+        }
+
         .white-rose {
-            /* Add specific styles for white rose */
+            top: 40%;
+            left: 15%;
+            width: 170px;
+            z-index: 2;
+            animation: float-left 3.5s ease-in-out infinite 0.3s;
         }
+
+        @keyframes float-left {
+            0%, 100% {
+                transform: translateY(0) rotate(-10deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(-15deg);
+            }
+        }
+
         .babys-breath {
-            /* Add specific styles for baby's breath */
+            top: 30%;
+            right: 10%;
+            width: 160px;
+            z-index: 1;
+            animation: float-right 4.2s ease-in-out infinite 0.6s;
+        }
+
+        @keyframes float-right {
+            0%, 100% {
+                transform: translateY(0) rotate(10deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(15deg);
+            }
+        }
+
+        .romantic-message {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #d1477a;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(209, 71, 122, 0.2);
+            animation: fade-in 2s ease-in;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .love-poem {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-top: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            animation: fade-in 2.5s ease-in;
+        }
+
+        /* Floating hearts animation */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float-up 10s ease-in infinite;
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 1s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 3s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 2.5s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 4.5s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 1.5s; }
+
+        @keyframes float-up {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+                transform: translateX(0) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                bottom: 110vh;
+                opacity: 0;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .sparkle:nth-child(2) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 0.5s;
+        }
+
+        .sparkle:nth-child(3) {
+            top: 40%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .sparkle:nth-child(4) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .flower-card {
+                padding: 40px 20px;
+                border-radius: 20px;
+            }
+
+            .flower-frame {
+                width: 300px;
+                height: 300px;
+            }
+
+            .pink-rose {
+                width: 150px;
+            }
+
+            .white-rose {
+                width: 130px;
+                left: 10%;
+            }
+
+            .babys-breath {
+                width: 120px;
+                right: 5%;
+            }
+
+            .romantic-message {
+                font-size: 1.8rem;
+            }
+
+            .love-poem {
+                font-size: 0.95rem;
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            .flower-frame {
+                width: 250px;
+                height: 250px;
+            }
+
+            .pink-rose {
+                width: 120px;
+            }
+
+            .white-rose {
+                width: 100px;
+            }
+
+            .babys-breath {
+                width: 90px;
+            }
+
+            .romantic-message {
+                font-size: 1.5rem;
+            }
+
+            .love-poem {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Happy Valentine's Day Athuuu ❤️</h1>
-    <div class="flower-frame">
-        <img src="https://img.freepik.com/free-psd/red-rose-flower-isolated-transparent-background_191095-15637.png" class="flower pink-rose" alt="Pink Rose">
-        <img src="https://pngimg.com/uploads/rose/rose_PNG66907.png" class="flower white-rose" alt="White Rose">
-        <img src="https://png.pngtree.com/png-clipart/20230508/original/pngtree-white-baby-breath-flowers-realistic-bouquet-png-image_9151512.png" class="flower babys-breath" alt="Baby's Breath">
-        <span style="display: block;">Hero Text</span>
+    <!-- Floating hearts background -->
+    <div class="floating-hearts">
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💗</div>
+        <div class="heart">💓</div>
+        <div class="heart">💝</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💗</div>
+        <div class="heart">💓</div>
+    </div>
+
+    <!-- Sparkles -->
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+
+    <div class="container">
+        <h1>Happy Valentine's Day Athuuu ❤️</h1>
+        
+        <div class="flower-card">
+            <div class="flower-frame">
+                <img src="https://img.freepik.com/free-psd/red-rose-flower-isolated-transparent-background_191095-15637.png" class="flower pink-rose" alt="Pink Rose">
+                <img src="https://pngimg.com/uploads/rose/rose_PNG66907.png" class="flower white-rose" alt="White Rose">
+                <img src="https://png.pngtree.com/png-clipart/20230508/original/pngtree-white-baby-breath-flowers-realistic-bouquet-png-image_9151512.png" class="flower babys-breath" alt="Baby's Breath">
+            </div>
+            
+            <div class="romantic-message">
+                You are my everything 💕
+            </div>
+            
+            <p class="love-poem">
+                In every heartbeat, in every breath,<br>
+                You're the light that guides me through.<br>
+                My love for you grows deeper each day,<br>
+                Forever and always, it's you.
+            </p>
+        </div>
     </div>
 </body>
 </html>
