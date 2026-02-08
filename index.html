@@ -195,9 +195,15 @@
         #audio-control {
             position: fixed; bottom: 20px; right: 20px; z-index: 10001;
             background: var(--glass); border: 1px solid var(--accent-pink);
-            width: 45px; height: 45px; border-radius: 50%; display: none;
+            width: 50px; height: 50px; border-radius: 50%; display: none;
             align-items: center; justify-content: center; cursor: pointer;
             backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(195, 47, 39, 0.3);
+            transition: transform 0.2s;
+        }
+
+        #audio-control:hover {
+            transform: scale(1.1);
         }
 
         @keyframes shake {
@@ -206,6 +212,11 @@
             40% {transform: translateX(10px);}
             60% {transform: translateX(-10px);}
             80% {transform: translateX(10px);}
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(195, 47, 39, 0.3); }
+            50% { transform: scale(1.15); box-shadow: 0 6px 25px rgba(195, 47, 39, 0.6); }
         }
 
         #flower-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
@@ -222,12 +233,12 @@
 <body>
 
     <!-- 🎵 BACKGROUND MUSIC (MP3) -->
-    <audio id="bg-music" loop preload="auto">
+    <audio id="bg-music" loop preload="metadata">
         <source src="https://github.com/workwithbinit/for-my_princess/raw/refs/heads/main/Aandhii_-_K_Hunthyo_Hola_Hami_Sangai_Bhayeko_Bhaye_Official_Lyric_Video_256KBPS.mp3" type="audio/mpeg">
     </audio>
 
     <div id="audio-control" onclick="toggleMusic()">
-        <span id="music-icon">🔇</span>
+        <span id="music-icon" style="font-size: 1.5rem;">🔇</span>
     </div>
 
     <!-- 🔒 LOCK SCREEN -->
@@ -311,15 +322,38 @@
         ];
 
         let musicPlaying = false;
+        let musicStarted = false;
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('audio-control');
         const musicIcon = document.getElementById('music-icon');
         const promptText = document.getElementById('prompt-text');
 
+        // Load metadata on page load
+        window.addEventListener('load', () => {
+            music.load();
+        });
+
         function updateValues() {
             document.getElementById('day-val').innerText = document.getElementById('day-slider').value.padStart(2, '0');
             document.getElementById('month-val').innerText = document.getElementById('month-slider').value.padStart(2, '0');
             document.getElementById('year-val').innerText = document.getElementById('year-slider').value;
+        }
+
+        function startMusic() {
+            if (!musicStarted) {
+                music.currentTime = 25; // Start at 00:25
+                musicStarted = true;
+            }
+            
+            music.play().then(() => {
+                musicIcon.innerText = '🔊';
+                musicPlaying = true;
+                musicBtn.style.animation = 'none';
+            }).catch(e => {
+                console.log("Play failed:", e);
+                musicIcon.innerText = '🔇';
+                musicBtn.style.animation = 'pulse 1.5s infinite';
+            });
         }
 
         function toggleMusic() {
@@ -328,10 +362,7 @@
                 musicIcon.innerText = '🔇';
                 musicPlaying = false;
             } else {
-                music.play().then(() => {
-                    musicIcon.innerText = '🔊';
-                    musicPlaying = true;
-                }).catch(e => console.log("Manual play blocked", e));
+                startMusic();
             }
         }
 
@@ -364,24 +395,11 @@
                 promptText.innerHTML = "ofc you do hehe 😁❤️";
                 promptText.style.color = "var(--valentines-red)";
                 
-                // Show music control immediately
+                // Show music control
                 musicBtn.style.display = 'flex';
                 
-                // Set start time and try to play (user interaction happened via button click)
-                music.currentTime = 25;
-                const playPromise = music.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        musicPlaying = true;
-                        musicIcon.innerText = '🔊';
-                    }).catch(e => {
-                        console.log("Autoplay prevented. User needs to click music button.", e);
-                        musicIcon.innerText = '🔇';
-                        // Pulse animation to draw attention to music button
-                        musicBtn.style.animation = 'heartbeat 1s infinite';
-                    });
-                }
+                // Try to start music (user just clicked, so we have interaction permission)
+                startMusic();
 
                 setTimeout(() => {
                     createBloomingFlowers();
@@ -401,7 +419,10 @@
                 error.style.opacity = 1;
                 const card = document.querySelector('.lock-card');
                 card.style.animation = 'shake 0.4s linear';
-                setTimeout(() => card.style.animation = '', 400);
+                setTimeout(() => {
+                    card.style.animation = '';
+                    error.style.opacity = 0;
+                }, 400);
             }
         }
 
