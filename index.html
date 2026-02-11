@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,8 +108,12 @@
         .hero {
             height: 100vh; display: flex; flex-direction: column; justify-content: center;
             align-items: center; text-align: center;
-            background: radial-gradient(circle at center, #ffffff 0%, #fff0f3 100%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 209, 220, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at center, #ffffff 0%, #fff0f3 100%);
             position: relative;
+            z-index: 5;
         }
 
         .hero-calligraphy {
@@ -129,7 +132,7 @@
             }
         }
 
-        section { padding: 80px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 20; }
+        section { padding: 80px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 10; }
 
         .symbolism {
             text-align: center; background-color: rgba(255, 255, 255, 0.9);
@@ -142,15 +145,22 @@
 
         .letter-container {
             background: rgba(255, 255, 255, 0.9); border: 1px solid var(--accent-pink);
-            padding: clamp(20px, 5vw, 60px); box-shadow: 15px 15px 0px var(--accent-pink);
+            padding: clamp(30px, 6vw, 70px); box-shadow: 15px 15px 0px var(--accent-pink);
+            line-height: 1.8;
+        }
+        
+        .letter-container p {
+            margin-bottom: 1.5em;
+            text-align: justify;
         }
 
         .greeting {
             color: var(--valentines-red);
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+            font-size: 1.6rem;
+            margin-bottom: 35px;
             font-family: var(--font-header);
             font-style: italic;
+            line-height: 1.4;
         }
 
         .tiny-heart {
@@ -189,7 +199,14 @@
             10% { transform: scale(1.2) rotate(-45deg); }
         }
 
-        .signature { text-align: right; color: var(--valentines-red); font-family: var(--font-header); font-size: 1.5rem; }
+        .signature { 
+            text-align: right; 
+            color: var(--valentines-red); 
+            font-family: var(--font-header); 
+            font-size: 1.4rem;
+            margin-top: 40px;
+            line-height: 1.6;
+        }
 
         footer { text-align: center; padding: 40px; color: var(--soft-red); font-size: 0.8rem; letter-spacing: 1px; }
 
@@ -220,14 +237,128 @@
             50% { transform: scale(1.15); box-shadow: 0 6px 25px rgba(195, 47, 39, 0.6); }
         }
 
-        #flower-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
+        #flower-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
 
         .particle {
             position: absolute;
+            opacity: 0.7;
+        }
+        
+        /* Heart shape using pseudo-elements */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #FF6B9D;
+            transform: rotate(-45deg);
+            animation-timing-function: ease-in-out;
+            filter: drop-shadow(0 2px 4px rgba(255, 107, 157, 0.3));
+        }
+        
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #FF6B9D;
             border-radius: 50%;
-            opacity: 0.8;
-            box-shadow: 0 0 5px rgba(255,255,255,0.9);
-            background: radial-gradient(circle, #FFE5EC 0%, #FFD1DC 60%, rgba(255,255,255,0) 100%);
+        }
+        
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        
+        /* Different heart sizes */
+        .heart.small {
+            width: 12px;
+            height: 12px;
+        }
+        
+        .heart.small::before,
+        .heart.small::after {
+            width: 12px;
+            height: 12px;
+        }
+        
+        .heart.small::before {
+            top: -6px;
+        }
+        
+        .heart.small::after {
+            left: 6px;
+        }
+        
+        .heart.medium {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .heart.medium::before,
+        .heart.medium::after {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .heart.medium::before {
+            top: -8px;
+        }
+        
+        .heart.medium::after {
+            left: 8px;
+        }
+        
+        .heart.large {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .heart.large::before,
+        .heart.large::after {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .heart.large::before {
+            top: -12px;
+        }
+        
+        .heart.large::after {
+            left: 12px;
+        }
+        
+        /* Heart color variations */
+        .heart.pink {
+            background-color: #FFB6D9;
+        }
+        
+        .heart.pink::before,
+        .heart.pink::after {
+            background-color: #FFB6D9;
+        }
+        
+        .heart.red {
+            background-color: #E57373;
+        }
+        
+        .heart.red::before,
+        .heart.red::after {
+            background-color: #E57373;
+        }
+        
+        .heart.deep-red {
+            background-color: #C32F27;
+        }
+        
+        .heart.deep-red::before,
+        .heart.deep-red::after {
+            background-color: #C32F27;
         }
     </style>
 </head>
@@ -248,8 +379,8 @@
             <h2 id="prompt-text">Do you still remember my birthday?</h2>
             
             <div class="slider-group">
-                <div class="slider-label">Day <span class="slider-value" id="day-val">25</span></div>
-                <input type="range" id="day-slider" min="1" max="31" value="25" oninput="updateValues()">
+                <div class="slider-label">Day <span class="slider-value" id="day-val">15</span></div>
+                <input type="range" id="day-slider" min="1" max="31" value="15" oninput="updateValues()">
             </div>
 
             <div class="slider-group">
@@ -298,12 +429,35 @@
         <section>
             <div class="letter-container">
                 <h3 class="greeting">
-                    My Dearest Athuuu,
+                    Dear love of my life, my baby, my everything,<br>
+                    my sweet baby, my love, my pukuli, my Athuu
                     <span class="tiny-heart"></span>
                 </h3>
-                <p>Happy Valentine's Day. I built this small corner of the internet just for you, to bridge the gap between us.</p>
-                <p>Living in Gelsenkirchen feels like a world away sometimes, but distance is just a test to see how far love can travel. You are always with me.</p>
-                <div class="signature">- Your Valentine</div>
+                
+                <p>I like writing thinking about you, and I'm so sorry for hyping it all up and telling you about the letter. I love you so much, baby.</p>
+
+                <p>We have hit a milestone. I don't know how, but emotionally and mentally, we've grown together. You have been with me since day one—ever since I became a conscious adult. I don't know how many times I've hurt you, but every time you've loved me more. I am more than grateful to have you in my life.</p>
+
+                <p>You must be thinking I'm writing random things, but it's all how I'm feeling right now. I was thinking I didn't even put lipstick to make this letter special. All those days, I used to preach about how people communicated over letters when you'd be upset about me not being available. As you've adapted to my schedule and loved me so much, I wanted my love to take form as well. I even thought of sending you a big teddy bear that you could hug while sleeping—but six of those would cost enough for me to fly to you with that money.</p>
+
+                <p>I'm in a phase of life where I'm questioning myself. All I did was feed my ego, and I don't know why—which is why I hurt you ruthlessly so many times. You have played a very important role in my life. You've been with me every day. Every time, in the back of my head, you're always present. I think of you every time I am out and when I am in. I am more than desperate at this point to meet you, see you, feel you, and heal you from every pain you relate with me—and instead fill you with a new pain: the pain of separation when we actually depart at the airport.</p>
+
+                <p>Two weeks is not enough, baby, but it is long. And I might become someone I never knew I was because I've never felt this—loved this deeply, scared this much, and been this vulnerable in my whole life. It fascinates me that you love me for who I am instead of trying to shape me. I mean, you have shaped me in different ways—you make me want to be better. I want to be better: better body, better mind, better health, and better spirit, so you can proudly say I'm yours.</p>
+
+                <p>Forgive me for the flow, baby—this is my first time writing a letter except for those in English exams when I was in grade school. Have we done so much, baby? I still feel like I haven't told you how much I love you and how much you mean to me. I didn't even think of what to write; I just gathered all the feelings I have for you and tried to express them in a way you'd understand. But I think nothing is as expressive as being able to touch you.</p>
+
+                <p>So baby, I just hope we meet soon—and next year, hopefully, I can be with you. I love you very much. I love your lips—your yummy, juicy lips, delicious, and they are my favorite. Also your eyes and your natural lashes—I love you and those. I don't know why you hide them all the time, but I feel weird when you act like I'm a stranger. I want to be part of your excellence, your features, and your insecurities as well. Nevertheless, you have no flaws at all.</p>
+
+                <p>I like you through my bones so much that I could never imagine any future without you. I love you so much and a lot. Don't get upset when I don't reply sometimes—it might be because I'm working to create a surprise for you. I love you so much, baby, and I like you a lot too.</p>
+
+                <p>Okay, now I feel silly. I think this is the end of the letter.<br>
+                I love you, my pukuli.</p>
+
+                <div class="signature">
+                    With love,<br>
+                    Your wannabe husband,<br>
+                    Binit ❤️
+                </div>
             </div>
         </section>
 
@@ -338,6 +492,21 @@
             document.getElementById('day-val').innerText = document.getElementById('day-slider').value.padStart(2, '0');
             document.getElementById('month-val').innerText = document.getElementById('month-slider').value.padStart(2, '0');
             document.getElementById('year-val').innerText = document.getElementById('year-slider').value;
+        }
+
+        function randomizeSliders() {
+            // Generate random values
+            const randomDay = Math.floor(Math.random() * 31) + 1;
+            const randomMonth = Math.floor(Math.random() * 12) + 1;
+            const randomYear = Math.floor(Math.random() * 16) + 1995; // 1995-2010
+            
+            // Set the slider values
+            document.getElementById('day-slider').value = randomDay;
+            document.getElementById('month-slider').value = randomMonth;
+            document.getElementById('year-slider').value = randomYear;
+            
+            // Update the display
+            updateValues();
         }
 
         function startMusic() {
@@ -428,30 +597,58 @@
         }
 
         window.onload = () => {
-            updateValues();
+            randomizeSliders(); // Randomize on page load
             const container = document.getElementById('flower-container');
-            for (let i = 0; i < 40; i++) {
-                const flower = document.createElement('div');
-                flower.classList.add('particle');
-                const size = Math.random() * 4 + 2;
-                flower.style.width = `${size}px`;
-                flower.style.height = `${size}px`;
-                flower.style.left = `${Math.random() * 100}vw`;
-                flower.style.top = `${Math.random() * -20}vh`;
-                const duration = Math.random() * 15 + 10;
-                const uniqueName = `float-${Math.random().toString(36).substr(2, 9)}`;
-                const driftX = (Math.random() - 0.5) * 150;
+            const heartSizes = ['small', 'medium', 'large'];
+            const heartColors = ['pink', 'red', 'deep-red', ''];
+            
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Random size
+                const size = heartSizes[Math.floor(Math.random() * heartSizes.length)];
+                heart.classList.add(size);
+                
+                // Random color
+                const color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                if (color) heart.classList.add(color);
+                
+                // Random starting position
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * -30}vh`;
+                
+                // Random opacity
+                heart.style.opacity = Math.random() * 0.4 + 0.3;
+                
+                // Animation
+                const duration = Math.random() * 20 + 15;
+                const uniqueName = `float-heart-${Math.random().toString(36).substr(2, 9)}`;
+                const driftX = (Math.random() - 0.5) * 200;
+                const rotation = Math.random() * 360;
+                
                 const keyframes = `@keyframes ${uniqueName} {
-                    0% { transform: translate(0, 0); opacity: 0; }
-                    10% { opacity: 0.8; }
-                    100% { transform: translate(${driftX}px, 110vh); opacity: 0; }
+                    0% { 
+                        transform: translate(0, 0) rotate(-45deg); 
+                        opacity: 0; 
+                    }
+                    10% { 
+                        opacity: ${Math.random() * 0.4 + 0.3}; 
+                    }
+                    100% { 
+                        transform: translate(${driftX}px, 120vh) rotate(${rotation}deg); 
+                        opacity: 0; 
+                    }
                 }`;
+                
                 const style = document.createElement('style');
                 style.innerHTML = keyframes;
                 document.head.appendChild(style);
-                flower.style.animation = `${uniqueName} ${duration}s linear infinite`;
-                flower.style.animationDelay = `-${Math.random() * 15}s`;
-                container.appendChild(flower);
+                
+                heart.style.animation = `${uniqueName} ${duration}s ease-in-out infinite`;
+                heart.style.animationDelay = `-${Math.random() * 20}s`;
+                
+                container.appendChild(heart);
             }
         };
     </script>
