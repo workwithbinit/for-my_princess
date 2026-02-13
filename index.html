@@ -187,18 +187,6 @@
         background-position: center 60%;
         background-repeat: no-repeat;
     }
-    #p-intro .panel-bg { background: linear-gradient(145deg,#FAE8D5 0%,#F0C9A0 55%,#E8B080 100%); }
-    #p-greeting .panel-bg { background: linear-gradient(160deg,#FDF0DE 0%,#F5D8B5 50%,#EEC48A 100%); }
-    #p-ch1   .panel-bg { background: linear-gradient(145deg,#FAE8D5 0%,#F0C9A0 55%,#E8B080 100%); }
-    #p-ch2   .panel-bg { background: linear-gradient(145deg,#F5D8B8 0%,#E8B878 40%,#D98858 70%,#C07040 100%); }
-    #p-ch3   .panel-bg { background: linear-gradient(150deg,#C8946A 0%,#9C7090 40%,#6A5890 70%,#3A4070 100%); }
-    #p-ch4   .panel-bg { background: radial-gradient(ellipse at 30% 60%, rgba(80,30,20,0.4) 0%, transparent 55%), linear-gradient(155deg,#2A3860 0%,#1E2A48 50%,#141C30 100%); }
-    #p-sign  .panel-bg { background: radial-gradient(ellipse at 50% 85%, rgba(192,64,64,0.22) 0%, transparent 58%), linear-gradient(180deg,#1A2438 0%,#0E1620 100%); }
-    #p-countdown .panel-bg { 
-        background: radial-gradient(ellipse at 50% 30%, rgba(192,64,64,0.15) 0%, transparent 50%), 
-                    radial-gradient(ellipse at 50% 70%, rgba(100,50,80,0.2) 0%, transparent 50%),
-                    linear-gradient(180deg, #0E1620 0%, #1A2438 50%, #141C30 100%); 
-    }
 
     /* ── HERO ── */
     #p-hero .hero-content { position: relative; z-index: 2; }
@@ -231,91 +219,81 @@
         100% { transform: scaleY(0); transform-origin: bottom; }
     }
 
-    /* ── CHAPTER LAYOUT ── */
-    .ch-layout {
+    /* ── GYPSOPHILA PANEL - Big Bold Calligraphy ── */
+    .gypsophila-bg {
+        position: absolute; inset: 0; z-index: 0;
+        background-size: cover; background-position: center; background-repeat: no-repeat;
+    }
+    .gypsophila-overlay {
         position: absolute; inset: 0; z-index: 1;
-        display: grid; grid-template-columns: 1fr; grid-template-rows: 40% 60%;
+        background: linear-gradient(180deg, rgba(255,250,245,0.75) 0%, rgba(253,240,222,0.8) 50%, rgba(250,230,210,0.85) 100%);
+    }
+    .gypsophila-content { z-index: 2; padding: 50px 20px; }
+    .gypsophila-text {
+        font-family: var(--font-d); font-style: italic; font-weight: 400;
+        font-size: clamp(1.8rem, 7vw, 3.5rem);
+        color: #8B2525;
+        line-height: 1.6;
+        text-shadow: 0 2px 20px rgba(139, 37, 37, 0.2);
+        opacity: 0; transform: translateY(30px);
+        animation: fadeUp 1.2s ease forwards 0.3s;
     }
     @media (min-width: 768px) {
-        .ch-layout { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+        .gypsophila-text { font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.5; }
     }
-    @media (max-width: 767px) {
-        .ch-txt { padding: 16px 18px; padding-top: 55px; }
-        .ch-p { font-size: 0.85rem; line-height: 1.8; margin-bottom: 0.9em; }
-        .ch-label { bottom: 12px; left: 12px; padding: 4px 10px; font-size: 0.55rem; }
+
+    /* ── CHAPTER LAYOUT - Full screen with translucent background ── */
+    .chapter-bg-image {
+        position: absolute; inset: 0; z-index: 0;
+        background-size: cover; background-position: center; background-repeat: no-repeat;
+        filter: brightness(0.85) saturate(1.1);
     }
-    .ch-img { position: relative; overflow: hidden; width: 100%; height: 100%; }
-    .ch-img img {
-        width: 100%; height: 100%; object-fit: cover; display: block;
-        filter: brightness(0.9) saturate(1.05);
+    .chapter-overlay {
+        position: absolute; inset: 0; z-index: 1;
+    }
+    .chapter-overlay.light {
+        background: linear-gradient(180deg, rgba(253,240,222,0.88) 0%, rgba(250,232,213,0.85) 50%, rgba(245,220,195,0.90) 100%);
+    }
+    .chapter-overlay.dark {
+        background: linear-gradient(180deg, rgba(20,28,48,0.85) 0%, rgba(30,42,72,0.82) 50%, rgba(20,28,48,0.88) 100%);
+    }
+    .chapter-content-wrapper {
+        position: absolute; inset: 0; z-index: 2;
+        display: flex; flex-direction: column;
+        padding: 55px 18px 20px;
+        overflow-y: auto; -webkit-overflow-scrolling: touch;
+    }
+    @media (min-width: 768px) {
+        .chapter-content-wrapper { padding: 70px 40px 30px; }
     }
     .ch-label {
-        position: absolute; bottom: 16px; left: 16px;
-        background: rgba(255,255,255,0.82); backdrop-filter: blur(8px);
-        padding: 5px 13px; border-radius: 20px;
-        font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red);
+        position: relative; display: inline-block; align-self: flex-start;
+        background: rgba(255,255,255,0.75); backdrop-filter: blur(8px);
+        padding: 4px 12px; border-radius: 16px;
+        font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red);
+        margin-bottom: 16px;
     }
-    .ch-txt {
-        display: flex; flex-direction: column; justify-content: flex-start;
-        padding: 30px 40px; padding-top: 70px;
-        overflow-y: auto; -webkit-overflow-scrolling: touch;
-        background: rgba(253,240,225,0.97);
+    @media (min-width: 768px) {
+        .ch-label { padding: 5px 14px; border-radius: 20px; font-size: 0.6rem; letter-spacing: 0.18em; margin-bottom: 20px; }
     }
+    .chapter-text-overlay { flex: 1; max-width: 100%; }
+    .chapter-text-overlay.dark { color: rgba(240,220,208,0.95); }
     .ch-p {
         font-family: var(--font-d);
-        font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-        line-height: 1.8; margin-bottom: 0.9em;
+        font-size: clamp(0.9rem, 3vw, 1.15rem);
+        line-height: 1.85; margin-bottom: 1em;
+        color: rgba(60,30,15,0.85);
         opacity: 0; transform: translateY(16px);
         transition: opacity 0.7s ease, transform 0.7s ease;
     }
     @media (min-width: 768px) {
-        .ch-p { font-size: clamp(0.92rem, 1.9vw, 1.12rem); line-height: 1.95; margin-bottom: 1.3em; }
+        .ch-p { font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.95; margin-bottom: 1.2em; }
     }
     .ch-p:nth-child(2) { transition-delay: 0.12s; }
     .ch-p:nth-child(3) { transition-delay: 0.24s; }
     .ch-p:nth-child(4) { transition-delay: 0.36s; }
     .panel.state-active .ch-p { opacity: 1; transform: translateY(0); }
-    /* light text for dark panels */
-    .dark-panel .ch-txt     { background: #141C30; }
-    .dark-panel .ch-p       { color: rgba(240,220,208,0.92); }
-
-    /* ── DIVIDERS ── */
-    .divrow { display: flex; align-items: center; gap: 10px; margin: 12px 0; width: min(380px, 90%); }
-    @media (min-width: 768px) {
-        .divrow { gap: 14px; margin: 1em 0; width: min(480px, 100%); }
-    }
-    .dline  { flex: 1; height: 1px; background: rgba(181,33,27,0.28); }
-    .dheart {
-        width: 8px; height: 8px; background: var(--red);
-        transform: rotate(-45deg); position: relative; flex-shrink: 0;
-        animation: hb 1.4s infinite;
-    }
-    @media (min-width: 768px) {
-        .dheart { width: 10px; height: 10px; }
-    }
-    .dheart::before,.dheart::after { content:''; position:absolute; width:100%; height:100%; background:var(--red); border-radius:50%; }
-    .dheart::before { top:-50%; left:0; }
-    .dheart::after  { top:0; left:50%; }
-    @keyframes hb { 0%,100%{transform:scale(1)rotate(-45deg)} 14%{transform:scale(1.28)rotate(-45deg)} 28%{transform:scale(1)rotate(-45deg)} 42%{transform:scale(1.15)rotate(-45deg)} }
-    
-    .intro-quote {
-        font-family: var(--font-d); font-style: italic; font-weight: 300;
-        font-size: clamp(0.95rem, 3vw, 1.42rem); color: rgba(60,30,15,0.72);
-        line-height: 1.7; max-width: 90%;
-    }
-    @media (min-width: 768px) {
-        .intro-quote { font-size: clamp(1.05rem, 3.2vw, 1.42rem); line-height: 1.85; max-width: 520px; }
-    }
-
-    /* ── GREETING ── */
-    .greeting-text {
-        font-family: var(--font-d); font-style: italic;
-        font-size: clamp(1.2rem, 5vw, 2.2rem); color: var(--red);
-        line-height: 1.9; max-width: 90%;
-    }
-    @media (min-width: 768px) {
-        .greeting-text { font-size: clamp(1.4rem, 4vw, 2.2rem); line-height: 1.8; max-width: 600px; }
-    }
+    .chapter-text-overlay.dark .ch-p { color: rgba(240,220,208,0.92); }
 
     /* ── SIGNATURE ── */
     .sign-eye {
@@ -362,6 +340,12 @@
     /* ── COUNTDOWN PANEL ── */
     #p-countdown .panel-content {
         color: white; padding: 50px 16px;
+    }
+    #p-sign .panel-bg { background: radial-gradient(ellipse at 50% 85%, rgba(192,64,64,0.22) 0%, transparent 58%), linear-gradient(180deg,#1A2438 0%,#0E1620 100%); }
+    #p-countdown .panel-bg { 
+        background: radial-gradient(ellipse at 50% 30%, rgba(192,64,64,0.15) 0%, transparent 50%), 
+                    radial-gradient(ellipse at 50% 70%, rgba(100,50,80,0.2) 0%, transparent 50%),
+                    linear-gradient(180deg, #0E1620 0%, #1A2438 50%, #141C30 100%); 
     }
     .countdown-title {
         font-family: var(--font-d); font-style: italic; font-weight: 300;
@@ -428,11 +412,30 @@
         .countdown-msg { font-size: clamp(0.9rem, 2.2vw, 1.1rem); margin-top: 20px; max-width: 400px; }
     }
     #p-countdown.state-active .countdown-msg { opacity: 1; }
+    
+    /* Bouquet Link */
+    .bouquet-link {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 12px 28px;
+        background: linear-gradient(135deg, rgba(255,200,190,0.9), rgba(255,180,170,0.9));
+        border-radius: 30px;
+        color: #8B2525;
+        font-family: var(--font-d); font-style: italic;
+        font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 500;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(139, 37, 37, 0.3);
+        opacity: 0; transform: translateY(20px);
+        transition: opacity 1s 1.2s, transform 1s 1.2s, box-shadow 0.3s;
+    }
+    .bouquet-link.visible { opacity: 1; transform: translateY(0); }
+    .bouquet-link:hover { box-shadow: 0 6px 30px rgba(139, 37, 37, 0.5); transform: translateY(-2px); }
+    
     .countdown-heart {
         font-size: 2.5rem; margin-top: 20px;
         opacity: 0; animation: hb 1.4s infinite;
         filter: drop-shadow(0 0 20px rgba(255,100,100,0.5));
-        transition: opacity 1s 1s;
+        transition: opacity 1s 1.4s;
     }
     @media (min-width: 768px) {
         .countdown-heart { font-size: 3rem; margin-top: 30px; }
@@ -506,30 +509,12 @@
         </div>
     </div>
 
-    <!-- 1: INTRO — Gypsophila -->
-    <div class="panel state-below" id="p-intro">
-        <div class="panel-bg"></div>
-        <div class="ch-layout">
-            <div class="ch-img">
-                <img src="https://raw.githubusercontent.com/workwithbinit/for-my_princess/main/gypsophila.png"
-                     alt="Gypsophila - Baby's Breath">
-                <span class="ch-label">Gypsophila</span>
-            </div>
-            <div class="ch-txt">
-                <div class="divrow" style="margin-top:1em"><div class="dline"></div><div class="dheart"></div><div class="dline"></div></div>
-                <blockquote class="intro-quote">
-                    "Gypsophila — Baby's Breath — represents everlasting love and purity. Combined with red roses, they tell a story of a passion as deep as it is sincere."
-                </blockquote>
-                <div class="divrow"><div class="dline"></div><div class="dheart"></div><div class="dline"></div></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2: GREETING -->
+    <!-- 1: GYPSOPHILA - Greeting with big bold calligraphy -->
     <div class="panel state-below" id="p-greeting">
-        <div class="panel-bg"></div>
-        <div class="panel-content">
-            <p class="greeting-text">
+        <div class="gypsophila-bg" style="background-image: url('https://github.com/workwithbinit/for-my_princess/blob/main/gypsophila.png?raw=true')"></div>
+        <div class="gypsophila-overlay"></div>
+        <div class="panel-content gypsophila-content">
+            <p class="gypsophila-text">
                 Dear love of my life,<br>
                 my baby, my everything,<br>
                 my sweet baby, my love,<br>
@@ -538,17 +523,13 @@
         </div>
     </div>
 
-    <!-- 3: CHAPTER 1 -->
+    <!-- 2: CHAPTER 1 -->
     <div class="panel state-below" id="p-ch1">
-        <div class="panel-bg"></div>
-        <div class="ch-layout">
-            <div class="ch-img">
-                <img src="https://github.com/workwithbinit/for-my_princess/raw/refs/heads/main/letter.jpg"
-                     onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&q=80&w=800'"
-                     alt="The Letter">
-                <span class="ch-label">The Letter</span>
-            </div>
-            <div class="ch-txt">
+        <div class="chapter-bg-image" style="background-image: url('https://github.com/workwithbinit/for-my_princess/blob/main/letter.jpg?raw=true')"></div>
+        <div class="chapter-overlay light"></div>
+        <div class="chapter-content-wrapper">
+            <span class="ch-label">The Letter</span>
+            <div class="chapter-text-overlay">
                 <p class="ch-p">I like writing thinking about you, and I'm so sorry for hyping it all up and telling you about the letter. I love you so much, baby.</p>
                 <p class="ch-p">We have hit a milestone. I don't know how, but emotionally and mentally, we've grown together. You have been with me since day one—ever since I became a conscious adult. I don't know how many times I've hurt you, but every time you've loved me more. I am more than grateful to have you in my life.</p>
                 <p class="ch-p">You must be thinking I'm writing random things, but it's all how I'm feeling right now. I was thinking I didn't even put lipstick to make this letter special. All those days, I used to preach about how people communicated over letters when you'd be upset about me not being available. As you've adapted to my schedule and loved me so much, I wanted my love to take form as well.</p>
@@ -557,17 +538,13 @@
         </div>
     </div>
 
-    <!-- 4: CHAPTER 2 -->
+    <!-- 3: CHAPTER 2 -->
     <div class="panel state-below" id="p-ch2">
-        <div class="panel-bg"></div>
-        <div class="ch-layout">
-            <div class="ch-img">
-                <img src="https://github.com/workwithbinit/for-my_princess/raw/refs/heads/main/me.jpg"
-                     onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800'"
-                     alt="Me">
-                <span class="ch-label">Thinking of You</span>
-            </div>
-            <div class="ch-txt">
+        <div class="chapter-bg-image" style="background-image: url('https://github.com/workwithbinit/for-my_princess/blob/main/me.jpg?raw=true')"></div>
+        <div class="chapter-overlay light"></div>
+        <div class="chapter-content-wrapper">
+            <span class="ch-label">Thinking of You</span>
+            <div class="chapter-text-overlay">
                 <p class="ch-p">I'm in a phase of life where I'm questioning myself. All I did was feed my ego, and I don't know why—which is why I hurt you ruthlessly so many times. You have played a very important role in my life. You've been with me every day.</p>
                 <p class="ch-p">Every time, in the back of my head, you're always present. I think of you every time I am out and when I am in. I am more than desperate at this point to meet you, see you, feel you, and heal you from every pain you relate with me—and instead fill you with a new pain: the pain of separation when we actually depart at the airport.</p>
                 <p class="ch-p">Two weeks is not enough, baby, but it is long. And I might become someone I never knew I was because I've never felt this—loved this deeply, scared this much, and been this vulnerable in my whole life.</p>
@@ -575,34 +552,26 @@
         </div>
     </div>
 
-    <!-- 5: CHAPTER 3 -->
-    <div class="panel state-below dark-panel" id="p-ch3">
-        <div class="panel-bg"></div>
-        <div class="ch-layout">
-            <div class="ch-img">
-                <img src="https://github.com/workwithbinit/for-my_princess/raw/refs/heads/main/us.png"
-                     onerror="this.src='https://images.unsplash.com/photo-1529543544282-ea669407fca3?auto=format&fit=crop&q=80&w=800'"
-                     alt="Us">
-                <span class="ch-label">Us</span>
-            </div>
-            <div class="ch-txt">
+    <!-- 4: CHAPTER 3 -->
+    <div class="panel state-below" id="p-ch3">
+        <div class="chapter-bg-image" style="background-image: url('https://github.com/workwithbinit/for-my_princess/blob/main/us.png?raw=true')"></div>
+        <div class="chapter-overlay dark"></div>
+        <div class="chapter-content-wrapper">
+            <span class="ch-label">Us</span>
+            <div class="chapter-text-overlay dark">
                 <p class="ch-p">It fascinates me that you love me for who I am instead of trying to shape me. I mean, you have shaped me in different ways—you make me want to be better. I want to be better: better body, better mind, better health, and better spirit, so you can proudly say I'm yours.</p>
                 <p class="ch-p">Forgive me for the flow, baby—this is my first time writing a letter except for those in English exams when I was in grade school. Have we done so much, baby? I still feel like I haven't told you how much I love you and how much you mean to me. I didn't even think of what to write; I just gathered all the feelings I have for you and tried to express them in a way you'd understand. But I think nothing is as expressive as being able to touch you.</p>
             </div>
         </div>
     </div>
 
-    <!-- 6: CHAPTER 4 -->
-    <div class="panel state-below dark-panel" id="p-ch4">
-        <div class="panel-bg"></div>
-        <div class="ch-layout">
-            <div class="ch-img">
-                <img src="https://github.com/workwithbinit/for-my_princess/raw/refs/heads/main/wallet.jpg"
-                     onerror="this.src='https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80&w=800'"
-                     alt="Always With Me">
-                <span class="ch-label">Always With Me</span>
-            </div>
-            <div class="ch-txt">
+    <!-- 5: CHAPTER 4 -->
+    <div class="panel state-below" id="p-ch4">
+        <div class="chapter-bg-image" style="background-image: url('https://github.com/workwithbinit/for-my_princess/blob/main/wallet.jpg?raw=true')"></div>
+        <div class="chapter-overlay dark"></div>
+        <div class="chapter-content-wrapper">
+            <span class="ch-label">Always With Me</span>
+            <div class="chapter-text-overlay dark">
                 <p class="ch-p">So baby, I just hope we meet soon—and next year, hopefully, I can be with you. I love you very much. I love your lips—your yummy, juicy lips, delicious, and they are my favorite. Also your eyes and your natural lashes—I love you and those.</p>
                 <p class="ch-p">I don't know why you hide them all the time, but I feel weird when you act like I'm a stranger. I want to be part of your excellence, your features, and your insecurities as well. Nevertheless, you have no flaws at all.</p>
                 <p class="ch-p">I like you through my bones so much that I could never imagine any future without you. I love you so much and a lot. Don't get upset when I don't reply sometimes—it might be because I'm working to create a surprise for you. I love you so much, baby, and I like you a lot too.</p>
@@ -611,7 +580,7 @@
         </div>
     </div>
 
-    <!-- 7: SIGNATURE -->
+    <!-- 6: SIGNATURE -->
     <div class="panel state-below" id="p-sign">
         <div class="panel-bg"></div>
         <div class="panel-content">
@@ -626,7 +595,7 @@
         </div>
     </div>
 
-    <!-- 8: COUNTDOWN -->
+    <!-- 7: COUNTDOWN with Bouquet Link -->
     <div class="panel state-below" id="p-countdown">
         <div class="panel-bg"></div>
         <div class="panel-content">
@@ -644,6 +613,7 @@
             </div>
             <p class="countdown-date">🗓 October 2027 · Sydney, Australia</p>
             <p class="countdown-msg">Two hearts, 14,000 km apart, counting every moment until they become one.</p>
+            <a href="https://digibouquet.vercel.app/bouquet/2f184a8d-eda1-4cff-b870-8e5d6b8ea144" target="_blank" rel="noopener noreferrer" class="bouquet-link">🌸 Here's a Digital Bouquet for you Pukuli 🌸</a>
             <p class="countdown-heart">❤️</p>
         </div>
     </div>
@@ -700,7 +670,7 @@ function updateUI() {
     });
 
     // Label colours
-    const dark = current >= 5;
+    const dark = current >= 4;
     ['jb-left','jb-right'].forEach(id => {
         document.getElementById(id).classList.toggle('dark-label', !dark);
     });
@@ -709,6 +679,12 @@ function updateUI() {
             ? (dark ? 'rgba(255,255,255,0.9)' : 'rgba(181,33,27,0.9)')
             : (dark ? 'rgba(255,255,255,0.25)' : 'rgba(181,33,27,0.22)');
     });
+    
+    // Bouquet link visibility
+    const bouquetLink = document.querySelector('.bouquet-link');
+    if (bouquetLink) {
+        bouquetLink.classList.toggle('visible', current === TOTAL - 1);
+    }
 }
 
 /* ── Wheel ── */
